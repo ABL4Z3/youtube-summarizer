@@ -36,8 +36,16 @@ def get_transcript_from_url(state: rstate) -> rstate:
     video_id = match.group(1)
 
     try:
+        # --- 2. ADD THIS BLOCK ---
+        # Configure the proxy using your free Webshare credentials
+        proxy_config = WebshareProxyConfig(
+            proxy_username="savbnbll",  # <-- Put your username here
+            proxy_password="zim65d400vrd",  # <-- Put your password here
+        )
+        # --- 
+        
         # Create an instance of the API
-        ytt_api = YouTubeTranscriptApi()
+        ytt_api = YouTubeTranscriptApi(proxy_config=proxy_config) # <-- 3. PASS CONFIG HERE
 
         # Fetch the transcript using your specified method.
         # It tries Hindi ('hi') first, then English ('en').
